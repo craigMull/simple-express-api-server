@@ -1,3 +1,7 @@
-# References
+# A Simple Express Api Server
 
-[] https://medium.com/litslink/next-js-express-server-pages-routes-and-data-fetching-13bf34cae9c3
+
+
+# TODO
+
+https://expressjs.com/en/advanced/best-practice-performance.html
