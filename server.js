@@ -4,6 +4,7 @@ const app = express();
 const PORT = 3001;
 
 app.use(cors());
+app.use(express.static('public'))
 
 const postsList = [
     {
@@ -26,6 +27,10 @@ const postsList = [
     }
 ];
 
+app.get('/api', (request, response) => {
+    response.send({ "users": ["userOne", "userTwo"]});
+})
+
 app.get('/posts', (request, response) => {
     response.send(postsList);
 })
@@ -35,6 +40,20 @@ app.get('/post/:id', (request, response) => {
 
     response.send(post);
 })
+
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).send('Something broke 💩')
+})
+
+// Add error handling middleware that Express will call
+// in the event of malformed JSON.
+app.use(function(err, req, res, next) {
+  // 'SyntaxError: Unexpected token n in JSON at position 0'
+  err.message;
+  next(err);
+});
+
 
 app.listen(PORT, () => {
     console.log(`🚀 Server started at http://localhost:${PORT}`)
